@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云端编程</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container" id="app">
+  <div class="banner">
+    <div class="login">
+        <a href="login.html"><button>登录</button></a>
+        <a href="register.html"><button>注册</button></a>
+    </div>
+    <h1>云端编程，浏览器里边学边练</h1>
+    <p>软件定义一切，网络连接时空，学习软件技术，创造未来世界。</p>
+    <a href="#" class="btn" @click="showMessage('开始学习')">马上学习</a>
+    <div class="logo">
+      <img src="logo-white.svg" alt="云端编程">
+    </div>
+  </div>
+  <div class="lab">
+    <img src="img-lab@2x.png">
+    <h1>高级Web编程实验室</h1>
+    <p>每人拥有自己完全独立的编程实验室，内置所有基础软件及学习素材。打开浏览器，即刻开始编程！</p>
+    <button @click="showMessage('了解高级Web编程实验室的详情')">了解详情</button>
+  </div>
+  <div class="screens">
+    <img src="img-screens@2x.png">
+    <h1>双屏学习</h1>
+    <p>双屏学习，小屏视频互动，大屏实际操作，学习无障碍。打开浏览器，即刻开始编程！</p>
+    <button @click="showMessage('了解双屏学习的详情')">了解详情</button>
+  </div>
+  <div class="title">
+    <h1>课程特色</h1>
+    <hr>
+  </div>
+  <div class="footer-container">
+    <div class="footer1">
+      <img src="1.jpg">
+      <h1>丰富的教学服务</h1>
+      <p>特色教学服务功能，各种配套教学服务，在线学习从未如此轻松。</p>
+      <a href="#" class="b1" @click="showMessage('了解丰富的教学服务')">马上学习</a>
+      <p>&gt;</p>
+    </div>
+    <div class="footer2">
+        <img src="2.jpg">
+      <h1>多元的学习方式</h1>
+      <p>知识提炼、答疑解惑、实时互动、开发有特色的教学服务方式。</p>
+      <a href="#" class="b2" @click="showMessage('了解多元的学习方式')">马上学习</a>
+      <p>&gt;</p>
+    </div>
+    <div class="footer3">
+        <img src="3.jpg">
+      <h1>高品质的学习体验</h1>
+      <p>多屏合一，随时学习，随时在线，学习记录一目了然，知识充电不再受限。</p>
+      <a href="#" class="b3" @click="showMessage('了解高品质的学习体验')">马上学习</a>
+      <p>&gt;</p>
+    </div>
+  </div>
+  <div class="footer4">
+    <p>&copy; 2024 云端科技 Artech 版权所有</p>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+   new Vue({
+  el: '#app',
+  data: {
+    username: '',
+    password: ''
+  },
+  methods: {
+    showMessage: function(message) {
+        alert(message);
+    },
+    showLoginModal: function() {
+      // 发送登录请求
+      fetch('http://localhost:3000/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: this.username,
+          password: this.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // 处理登录返回的数据
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    },
+    showRegisterModal: function() {
+      // 发送注册请求
+      fetch('http://localhost:3000/user/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: this.username,
+          password: this.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        // 处理注册返回的数据
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  }
+});
+  </script>
+  </body>
+  </html>
